@@ -1,0 +1,232 @@
+{% load thumbnail static %}
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>NASA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css"/>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body class="bg-dark text-white d-flex flex-column min-vh-100">
+
+<!-- ================= HEADER ================= -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-black py-3">
+    <div class="container d-flex align-items-center">
+
+        <button class="navbar-toggler me-2 d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand me-auto me-lg-4" href="#">
+            <img src="{% static 'img/NASA_logo.svg' %}" height="50">
+        </a>
+
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav mx-lg-auto text-center gap-lg-4">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">ПРЕИМУЩЕСТВА</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#gallery">ФОТОГРАФИИ</a>
+                </li>
+            </ul>
+
+            <a class="btn btn-danger px-4 py-2 ms-lg-3 d-none d-lg-inline" href="#">
+                ВХОД
+            </a>
+        </div>
+
+        <a class="btn btn-danger px-4 py-2 ms-auto d-lg-none" href="#">
+            ВХОД
+        </a>
+
+    </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section class="pt-5 pb-3">
+    <div class="container text-center">
+
+        <div class="row justify-content-center hero-text-row">
+            <div class="col-lg-10 hero-text">
+                <h1 class="display-4 fw-bold">
+                    Космическое агентство
+                </h1>
+                <p class="lead mt-3 mx-auto">
+                    Национальное управление по аэронавтике и исследованию космического
+                    пространства — ведомство, относящееся к федеральному правительству
+                    США и подчиняющееся непосредственно президенту США.
+                </p>
+            </div>
+        </div>
+
+        <div class="row align-items-center g-4 flex-column-reverse flex-lg-row">
+
+            <div class="col-lg-6">
+                <img src="{% static 'img/space.png' %}" class="img-fluid rounded shadow">
+            </div>
+
+            <div class="col-lg-6">
+                <div class="row row-cols-2 g-4 text-center">
+
+                    <div class="col">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <img src="{% static 'img/1.png' %}" width="64">
+                            </div>
+                            <p>Спейс шаттлы – пилотируемые корабли</p>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <img src="{% static 'img/2.png' %}" width="64">
+                            </div>
+                            <p>Лучшее телескопическое оборудование</p>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <img src="{% static 'img/3.png' %}" width="64">
+                            </div>
+                            <p>Исследовательские станции на Луне — шаг к новым открытиям!</p>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <img src="{% static 'img/4.png' %}" width="64">
+                            </div>
+                            <p>Золотая медаль по научным исследованиям</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section id="gallery" class="bg-black gallery-section">
+    <div class="container text-center">
+
+        <h2 class="gallery-title">Фотографии</h2>
+
+        <div class="gallery-wrapper mx-auto">
+
+            <div class="slider-big mb-4">
+                {% for slide in slides %}
+                <div>
+                    {% thumbnail slide.image 1200x600 crop quality=95 as big_thumb %}
+                    <img src="{{ big_thumb.url }}" class="img-fluid rounded slider-image open-fullscreen">
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="thumbs-wrapper position-relative">
+                <div class="slider-thumbs">
+                    {% for slide in slides %}
+                    <div>
+                        {% thumbnail slide.image 200x150 crop quality=90 as small_thumb %}
+                        <img src="{{ small_thumb.url }}" class="img-fluid rounded thumb-image">
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ================= FULLSCREEN MODAL ================= -->
+<div class="modal fade" id="galleryModal" tabindex="-1">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content bg-black">
+            <div class="modal-body p-0 d-flex align-items-center">
+                <div class="fullscreen-slider w-100">
+                    {% for slide in slides %}
+                    <div>
+                        <img src="{{ slide.image.url }}" class="img-fluid fullscreen-image">
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
+
+<script>
+$(document).ready(function(){
+
+    $('.slider-big').slick({
+        slidesToShow: 1,
+        arrows: false,
+        fade: true,
+        asNavFor: '.slider-thumbs'
+    });
+
+    $('.slider-thumbs').slick({
+        slidesToShow: 5,
+        asNavFor: '.slider-big',
+        focusOnSelect: true,
+        prevArrow: '<button class="thumb-arrow thumb-prev"><span>←</span></button>',
+        nextArrow: '<button class="thumb-arrow thumb-next"><span>→</span></button>',
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    arrows: false
+                }
+            }
+        ]
+    });
+
+    $('.fullscreen-slider').slick({
+        slidesToShow: 1,
+        arrows: true,
+        prevArrow: '<button class="thumb-arrow thumb-prev"><span><-</span></button>',
+        nextArrow: '<button class="thumb-arrow thumb-next"><span>-></span></button>',
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    arrows: false
+                }
+            }
+        ]
+    });
+
+    $('.open-fullscreen').on('click', function(){
+
+        let index = $('.slider-big').slick('slickCurrentSlide');
+
+        let modal = new bootstrap.Modal(document.getElementById('galleryModal'));
+        modal.show();
+
+        setTimeout(function(){
+            $('.fullscreen-slider').slick('slickGoTo', index);
+        }, 200);
+
+    });
+
+});
+</script>
+
+</body>
+</html>
