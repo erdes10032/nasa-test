@@ -29,7 +29,7 @@
         <div class="collapse navbar-collapse" id="menu">
             <ul class="navbar-nav mx-lg-auto text-center gap-lg-4">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">ПРЕИМУЩЕСТВА</a>
+                    <a class="nav-link active" href="#features">ПРЕИМУЩЕСТВА</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="#gallery">ФОТОГРАФИИ</a>
@@ -65,7 +65,7 @@
             </div>
         </div>
 
-        <div class="row align-items-center g-4 flex-column-reverse flex-lg-row">
+        <div class="row align-items-center g-4 flex-column-reverse flex-lg-row" id="features">
 
             <div class="col-lg-6">
                 <img src="{% static 'img/space.png' %}" class="img-fluid rounded shadow">
@@ -213,16 +213,13 @@ $(document).ready(function(){
     });
 
     $('.open-fullscreen').on('click', function(){
-
         let index = $('.slider-big').slick('slickCurrentSlide');
-
         let modal = new bootstrap.Modal(document.getElementById('galleryModal'));
         modal.show();
 
         setTimeout(function(){
             $('.fullscreen-slider').slick('slickGoTo', index);
         }, 200);
-
     });
 
 });
