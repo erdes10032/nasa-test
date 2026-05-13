@@ -1,4 +1,4 @@
-# NASA Slider Test Project
+# NASA Slider Project
 
 Проект на Django 5.2 с использованием:
 
