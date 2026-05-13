@@ -14,8 +14,8 @@ Python 3.12+
 
 Клонировать реопозиторий:
 ```bash
-git clone https://github.com/erdes10032/nasa-test.git
-cd nasa-test
+git clone https://github.com/erdes10032/nasa.git
+cd nasa
 ```
 
 Создать виртуальное окружение:
