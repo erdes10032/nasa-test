@@ -1,6 +1,6 @@
 # NASA Slider Test Project
 
-Тестовый проект на Django 5.2 с использованием:
+Проект на Django 5.2 с использованием:
 
 - Bootstrap 5
 - Slick Slider
